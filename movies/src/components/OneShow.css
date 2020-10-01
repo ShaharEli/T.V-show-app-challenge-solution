@@ -1,0 +1,47 @@
+ .one-show-container{
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    max-height: 100vh;
+    max-width: 100vw;
+    padding: 10px;
+} 
+
+.one-show-img{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    height: 300px;
+    width: 250px;
+}
+.one-show-description{
+    width: 50vw;
+    text-align: center;
+    
+}
+
+.green{
+    color: green;
+}
+
+.yellow{
+    color: yellow;
+}
+
+.red{
+    color: red;
+}
+
+.one-show-footer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+} 
+
+@media only screen and (max-width: 460px){
+    .one-show-container{
+        flex-direction: column;
+        height: 100vh;
+        justify-content: flex-start;
+        align-items: center;
+    }
+}

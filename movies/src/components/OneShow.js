@@ -1,28 +1,65 @@
 import React, { useEffect, useState } from "react";
 import axios from 'axios'
+import {useParams} from "react-router-dom"
+import "./OneShow.css"
 
 function OneShow() {
-    const [show, setShow] = useState([]);
+    const [show, setShow] = useState({});
+    const [seasons, setSeasons] = useState(0);
+    const [ratingClass, setRatingClass] = useState("");
 
+    const {id} = useParams()
     useEffect(() => {
       (async () => {
         try {
-          const { data } = await axios.get("/https://www.episodate.com/api/show-details?q=29560");
-          setShow(data);
+          const { data } = await axios.get(`https://www.episodate.com/api/show-details?q=${id}`);
+          const showData = data.tvShow
+          setShow(showData);
+          setSeasons(showData.episodes[showData.episodes.length-1].season);
+          const rating = Number(showData.rating)
+          if(rating>=8){
+            setRatingClass("green")
+          }else if(rating>=6){
+            setRatingClass("yellow")
+          }else{
+            setRatingClass("red")
+          }
+          console.log(showData);
         } catch (error) {
           console.log(error.message);
         }
       })();
-      console.log(data)
-    }, []);
+    }, [id]);
 
     return (
-        <div>
+        show.name?
+        <div className="one-show-container">
+            <div className="one-show-img-and-title" >
             <h2>{show.name}</h2>
-            <img src={show.tvShow.image_path} />
-            {show.tvShow.description}
-            seasons:{show.episodes[length-1].season}
+            <img className="one-show-img" src={show.image_path} alt={show.name}/>
+            <div className="one-show-footer">
+            <div className="seasons">{seasons} seasons</div>
+            <div className="genres">|&nbsp;
+           {show.genres.map(genre=><span className="genre" key={genre}>{genre} | </span>)}
+           </div>
+            <div className="rating">Rating:&nbsp;
+                  <span className={ratingClass}>
+                    {show.rating.toString().slice(0,4)}
+                  </span>
+            </div>
+            <div className="show-status">
+              status: <span className="status">{show.status}</span>
+            </div>
+            </div>
+            </div>
+            <div className="one-show-description">
+              <h2>description:</h2>
+            {show.description}
+            </div>
+
         </div>
+        :
+        <h2>loading...</h2>
     )
 } 
 
