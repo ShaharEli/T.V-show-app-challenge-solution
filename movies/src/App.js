@@ -5,6 +5,14 @@ import './App.css';
 
 function App() {
   const [shows, setShows] = useState([]);
+  const [searchInput, setSearchInput] = useState("");
+
+  const handleSubmit = async (searchInput) => { 
+    const {data : shows} = await axios.get(
+      `https://www.episodate.com/api/search?q=${searchInput}`
+      );
+       setShows[shows.tv_shows];
+  }
 
   useEffect(() => {
     (async () => {
@@ -14,8 +22,16 @@ function App() {
       setShows(theShows.tv_shows);
     })();
   }, []);
+  
   return (
     <div className='app'>
+      <form onSubmit={(e) =>{
+        e.preventDefault(),
+        handleSubmit(searchInput)
+      }}>
+      <input type="text" onChange={(e) => {setSearchInput(e.target.value)}}></input>
+      <button type="submit">Search</button>
+      </form>
       {shows.map((show) => (
         <Show show={show} />
       ))}
