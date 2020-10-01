@@ -2,8 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import axios from 'axios';
 import Show from './Show';
 import './Home.css';
-import { Link } from 'react-router-dom';
-
+import bg from "./popcorn.mp4"
 function Home() {
   const [shows, setShows] = useState([]);
   const [searchInput, setSearchInput] = useState("");
@@ -35,13 +34,15 @@ function Home() {
   
   return (
     <div className='app'>
+      <video src={bg} playsInline autoPlay muted loop id="bgvid"/>
+      <h1>Trending now</h1>
       <form onSubmit={(e) =>handleSubmit(e)}>
-      <input type="text" onChange={(e) => {setSearchInput(e.target.value)}}></input>
-      <button type="submit">Search</button>
+      <input id="search-bar" placeholder="Search t.v show..." type="text" onChange={(e) => {setSearchInput(e.target.value)}}></input>
+      <button id="submit-btn" type="submit">Search</button>
       </form>
       <div className="top-shows">
       {shows.map((show) => (
-        <Show show={show} />
+        <Show show={show} key={show.id} />
       ))}
       </div>
     </div>

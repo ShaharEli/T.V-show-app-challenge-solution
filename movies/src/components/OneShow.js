@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from 'axios'
-import {useParams} from "react-router-dom"
+import {Link, useParams} from "react-router-dom"
 import "./OneShow.css"
 
 function OneShow() {
@@ -24,7 +24,6 @@ function OneShow() {
           }else{
             setRatingClass("red")
           }
-          console.log(showData);
         } catch (error) {
           console.log(error.message);
         }
@@ -34,17 +33,20 @@ function OneShow() {
     return (
         show.name?
         <div className="one-show-container">
+            <Link className="go-back-link" to="/">
+            <img className="go-back-img" alt="Go back" src="https://img.icons8.com/metro/52/000000/circled-left-2.png"/>
+            </Link>
             <div className="one-show-img-and-title" >
             <h2>{show.name}</h2>
             <img className="one-show-img" src={show.image_path} alt={show.name}/>
             <div className="one-show-footer">
             <div className="seasons">{seasons} seasons</div>
-            <div className="genres">|&nbsp;
-           {show.genres.map(genre=><span className="genre" key={genre}>{genre} | </span>)}
+            <div className="genres">
+           {show.genres.map(genre=><span className="genre" key={genre}>{genre}</span>)}
            </div>
             <div className="rating">Rating:&nbsp;
                   <span className={ratingClass}>
-                    {show.rating.toString().slice(0,4)}
+                    {show.rating.toString().slice(0,3)}
                   </span>
             </div>
             <div className="show-status">

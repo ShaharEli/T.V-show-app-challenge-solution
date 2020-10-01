@@ -16,7 +16,7 @@
 .one-show-description{
     width: 50vw;
     text-align: center;
-    
+    padding-bottom: 20px;
 }
 
 .green{
@@ -35,7 +35,26 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 20vh;
+    justify-content: space-around;
 } 
+
+.genre{
+    padding-left: 4px;
+    padding-right: 4px;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+}
+
+.go-back-link{
+    position: absolute;
+    top:5;
+    left: 0;
+}
+
+.go-back-img{
+    width: 40px;
+}
 
 @media only screen and (max-width: 460px){
     .one-show-container{
@@ -44,4 +63,8 @@
         justify-content: flex-start;
         align-items: center;
     }
+    .one-show-description{
+        width: 93vw;
+    }
+
 }
