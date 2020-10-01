@@ -4,7 +4,7 @@ function Show({ show }) {
   return (
     <div className='tv-show'>
       <img
-        height='350px'
+        maxHeight='350px'
         width='250px'
         src={show.image_thumbnail_path}
         alt={show.name}
