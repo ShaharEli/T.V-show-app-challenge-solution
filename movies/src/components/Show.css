@@ -1,0 +1,10 @@
+.tv-show {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+}
+
+.show-header {
+    max-width: 250px;
+}

@@ -1,25 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import axios from "axios"
+import axios from 'axios';
 import Show from './components/Show';
+import './App.css';
 
-  function App() {
-    const [shows,setShows] = useState([])
+function App() {
+  const [shows, setShows] = useState([]);
 
-
-    useEffect(()=>{
-     (async ()=>{
-        const {data : theShows} = await axios.get("https://www.episodate.com/api/most-popular")
-        setShows(theShows.tv_shows);
-    }
-    )()
-  },[])
+  useEffect(() => {
+    (async () => {
+      const { data: theShows } = await axios.get(
+        'https://www.episodate.com/api/most-popular'
+      );
+      setShows(theShows.tv_shows);
+    })();
+  }, []);
   return (
-    <div className="App">
-      {
-        shows.map(show=>
-           <Show show={show} />
-          )
-      }
+    <div className='app'>
+      {shows.map((show) => (
+        <Show show={show} />
+      ))}
     </div>
   );
 }
