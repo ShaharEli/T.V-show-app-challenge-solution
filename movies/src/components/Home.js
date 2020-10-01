@@ -35,7 +35,7 @@ function Home() {
   return (
     <div className='app'>
       <video src={bg} playsInline autoPlay muted loop id="bgvid"/>
-      <h1>Trending now</h1>
+      <h1>The Best T.V Shows</h1>
       <form onSubmit={(e) =>handleSubmit(e)}>
       <input id="search-bar" placeholder="Search t.v show..." type="text" onChange={(e) => {setSearchInput(e.target.value)}}></input>
       <button id="submit-btn" type="submit">Search</button>
