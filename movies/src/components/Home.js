@@ -3,6 +3,7 @@ import axios from 'axios';
 import Show from './Show';
 import './Home.css';
 import bg from "../video/popcorn.mp4"
+
 function Home() {
   const [shows, setShows] = useState([]);
   const [searchInput, setSearchInput] = useState("");

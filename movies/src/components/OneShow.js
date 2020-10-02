@@ -7,8 +7,8 @@ function OneShow() {
     const [show, setShow] = useState({});
     const [seasons, setSeasons] = useState(0);
     const [ratingClass, setRatingClass] = useState("");
-
     const {id} = useParams()
+
     useEffect(() => {
       (async () => {
         try {

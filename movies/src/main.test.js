@@ -12,6 +12,7 @@ const delay = (time) => {
         setTimeout(resolve, time)
     });
  }
+
 const getTvShowTitle = (childNum)=>{
    return `#root > div > div > a:nth-child(${childNum}) > div > h2`
 }
@@ -29,7 +30,6 @@ describe(projectName, () => {
   afterAll(async () => {
     await browser.close();
   })
-
   describe('Home page test', () => {
         test('The app should have home page with all the popular tv shows', async () => {
             await page.goto('http://localhost:3000');
@@ -87,8 +87,7 @@ describe(projectName, () => {
             expect(lastShow).toBe(shows[19].name)
         })
   })
-    describe('Search test', () => {
-        
+    describe('One show test', () => {        
         test("The app should go to the tv show page when clicking on tv show item",async()=>{
             await page.goto('http://localhost:3000');
             await page.waitForSelector('.tv-show');
@@ -113,22 +112,19 @@ describe(projectName, () => {
             const seasons =  await page.$eval(".seasons",show=>show.innerText)
             expect(show).toBe(selectedShow.name)
             expect(seasons).toBe("8 seasons")
-            const firstGenre =  await page.$eval(getGenrePath(1),genre=>genre.innerHtml)
-            const secondGenre =  await page.$eval(getGenrePath(2),genre=>genre.innerHtml)
-            const lastGenre =  await page.$eval(getGenrePath(3),genre=>genre.innerHtml)
-            console.log(firstGenre);
+            const firstGenre =  await page.$eval(getGenrePath(1),genre=>genre.innerText)
+            const secondGenre =  await page.$eval(getGenrePath(2),genre=>genre.innerText)
+            const lastGenre =  await page.$eval(getGenrePath(3),genre=>genre.innerText)
             const genre1 = selectedShow.genres[0]
             const genre2 = selectedShow.genres[1]
             const genre3 = selectedShow.genres[2]
-            expect(firstGenre).tobe(genre1)
-            expect(secondGenre).tobe(genre2)
-            expect(lastGenre).tobe(genre3)
+            expect(firstGenre).toBe(genre1)
+            expect(secondGenre).toBe(genre2)
+            expect(lastGenre).toBe(genre3)
             const status =  await page.$eval(".status",showStatus=>showStatus.innerText)
-            console.log(status);
-            expect(status).tobe(selectedShow.status)
+            expect(status).toBe(selectedShow.status)
             const showImg =  await page.$eval(".one-show-img",img=>img.src)
-            expect(showImg).tobe(selectedShow.image_path)
-
+            expect(showImg).toBe(selectedShow.image_path)
             
         })
 
