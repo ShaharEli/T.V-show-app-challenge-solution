@@ -125,6 +125,8 @@ describe(projectName, () => {
             expect(status).toBe(selectedShow.status)
             const showImg =  await page.$eval(".one-show-img",img=>img.src)
             expect(showImg).toBe(selectedShow.image_path)
+            const rating =  await page.$eval(".green",rating=>rating.innerText)
+            expect(rating).toBe("9.4")
             
         })
 
