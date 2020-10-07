@@ -145,5 +145,20 @@ describe(projectName, () => {
             const rating = await page.$eval('.red',rating=>rating.innerText)
             expect(rating).toBe("0" || 0);
         })
+
+        test("Check local storage - the show need to be liked after refresh", async () => {
+            await page.goto("http://localhost:3000/show/43234");
+            await delay(2000);
+            let alt = await page.$eval('.interaction-img', image=>image.alt);
+            expect(alt).toBe("not liked");
+            await page.$eval('.like-div',isLiked=>isLiked.click());
+            await delay(2000);
+            alt = await page.$eval('.interaction-img', image=>image.alt);
+            expect(alt).toBe("liked");
+            await page.goto("http://localhost:3000/show/43234");
+            delay(2000);
+            alt = await page.$eval('.interaction-img', image=>image.alt);
+            expect(alt).toBe("liked");
+        })
     })
 })
